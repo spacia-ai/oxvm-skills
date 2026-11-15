@@ -1,6 +1,6 @@
-# OxideVM skills repository
+# TabVM skills repository
 
-This public repository owns the canonical OxideVM agent skills. Keep instructions focused on public SDK APIs and the generated starter. Never copy private engine instructions, source, credentials, host paths or release records here.
+This public repository owns the canonical TabVM agent skills. Keep instructions focused on public SDK APIs and the generated starter. Never copy private engine instructions, source, credentials, host paths or release records here.
 
 Keep skill bodies under `skills/`. SDK starter copies are generated from an immutable commit and checked by file hashes. Do not maintain a second handwritten copy. Read the project's installed SDK version and declarations before choosing APIs.
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TabVM SDK"
+  short_description: "Build browser apps that run real Linux programs"
+  default_prompt: "Use $tabvm-sdk to integrate TabVM into this application."

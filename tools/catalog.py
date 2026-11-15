@@ -10,9 +10,9 @@ def catalogs(root: Path = ROOT) -> dict[str, dict]:
     identity = {key: plugin[key] for key in ['name', 'version', 'description']}
     return {
         '.codex-plugin/plugin.json': {**identity, 'skills': './skills/'},
-        '.claude-plugin/plugin.json': {**identity, 'author': {'name': 'Spacia B.V.'}, 'homepage': 'https://oxidevm.dev/docs/'},
+        '.claude-plugin/plugin.json': {**identity, 'author': {'name': 'Spacia B.V.'}, 'homepage': 'https://tabvm.dev/docs/'},
         '.agents/plugins/marketplace.json': {
-            'name': 'oxidevm', 'interface': {'displayName': 'OxideVM'},
+            'name': 'oxidevm', 'interface': {'displayName': 'TabVM'},
             'plugins': [{'name': 'oxidevm', 'source': {'source': 'local', 'path': './'},
                          'policy': {'installation': 'AVAILABLE', 'authentication': 'ON_INSTALL'}, 'category': 'Productivity'}],
         },

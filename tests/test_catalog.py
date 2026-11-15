@@ -36,18 +36,18 @@ class CatalogTests(unittest.TestCase):
             check(self.root)
 
     def test_escaping_symlink_is_rejected(self):
-        (self.root / 'skills/oxidevm-sdk/leak.md').symlink_to('/etc/passwd')
+        (self.root / 'skills/tabvm-sdk/leak.md').symlink_to('/etc/passwd')
         with self.assertRaisesRegex(ValueError, 'regular files'):
             skill_files(self.root)
 
     def test_unexpected_executable_is_rejected(self):
-        (self.root / 'skills/oxidevm-sdk/install.sh').write_text('exit 0')
+        (self.root / 'skills/tabvm-sdk/install.sh').write_text('exit 0')
         with self.assertRaisesRegex(ValueError, 'Unexpected skill resource'):
             skill_files(self.root)
 
     def test_image_guidance_uses_the_project_release_and_does_not_invent_local_recipes(self):
         files = skill_files(self.root)
-        for name in ('oxidevm-sdk', 'oxidevm-starter'):
+        for name in ('tabvm-sdk', 'tabvm-starter'):
             text = files[f'skills/{name}/SKILL.md'].decode()
             self.assertIn('README.md', text)
             self.assertIn('release-pinned', text)

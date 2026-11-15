@@ -1,0 +1,4 @@
+interface:
+  display_name: "TabVM Modules"
+  short_description: "Package a WebAssembly program as an TabVM module"
+  default_prompt: "Use $tabvm-module-author to create or install an TabVM WebAssembly module."
