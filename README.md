@@ -4,11 +4,12 @@ Skills for building browser applications with the [OXVM SDK](https://oxvm.dev/do
 
 SDK/CLI starters include these project skills from version 0.0.4.
 Earlier starters can use the plugin installation below. Versioned plugin ZIPs
-are available under [Releases](https://github.com/spacia-ai/oxidevm-skills/releases) after release approval.
+are available under [Releases](https://github.com/spacia-ai/oxvm-skills/releases) after release approval.
 
-The OXVM package rename is pending its approved release. The marketplace and
-plugin IDs remain `oxidevm` so existing installations can update. The display
-name and current guidance use OXVM.
+The OXVM SDK and CLI 0.0.27 are published. The marketplace and plugin IDs are
+`oxvm`. Existing installations can add this canonical marketplace and plugin
+with the commands below. The former repository remains available for pinned
+installations.
 
 ## New projects
 
@@ -26,19 +27,19 @@ skills download is needed for a generated starter.
 With current Codex:
 
 ```sh
-codex plugin marketplace add spacia-ai/oxidevm-skills
-codex plugin add oxidevm@oxidevm
+codex plugin marketplace add spacia-ai/oxvm-skills
+codex plugin add oxvm@oxvm
 ```
 
 With Claude Code 2.1.292 or newer:
 
 ```sh
-claude plugin install oxidevm --marketplace spacia-ai/oxidevm-skills
+claude plugin install oxvm --marketplace spacia-ai/oxvm-skills
 ```
 
-Older Claude Code can use `/plugin marketplace add spacia-ai/oxidevm-skills`
-and `/plugin install oxidevm@oxidevm` inside its session. The marketplace and
-plugin are both named `oxidevm`.
+Older Claude Code can use `/plugin marketplace add spacia-ai/oxvm-skills`
+and `/plugin install oxvm@oxvm` inside its session. The marketplace and
+plugin are both named `oxvm`.
 
 Codex desktop and local/SSH Claude Code desktop sessions can read the generated
 project skills. For Claude Chat or Cowork, use the plugin ZIP from a versioned
@@ -48,9 +49,9 @@ access to your project; opening the browser demo alone does not grant it.
 
 ## Updates
 
-For Codex, run `codex plugin marketplace upgrade oxidevm`, then
-`codex plugin add oxidevm@oxidevm`. For Claude Code, run
-`claude plugin update oxidevm@oxidevm`. Third-party Claude marketplace
+For Codex, run `codex plugin marketplace upgrade oxvm`, then
+`codex plugin add oxvm@oxvm`. For Claude Code, run
+`claude plugin update oxvm@oxvm`. Third-party Claude marketplace
 auto-updates are off by default. Enable them under **Marketplaces → OXVM**
 in `/plugin` if you want them. Follow the client's reload message.
 

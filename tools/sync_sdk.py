@@ -12,7 +12,7 @@ from pathlib import Path
 from catalog import ROOT, write_catalogs
 from check import check, skill_files
 
-REPOSITORY = 'spacia-ai/oxidevm-skills'
+REPOSITORY = 'spacia-ai/oxvm-skills'
 
 
 def inspect_archive(data: bytes, version: str, root: Path = ROOT) -> dict:
@@ -44,7 +44,9 @@ def inspect_archive(data: bytes, version: str, root: Path = ROOT) -> dict:
     pin = json.loads(template['AGENT_SKILLS.json'])
     if not isinstance(pin, dict) or pin.get('schemaVersion') != 1 or pin.get('sdkVersion') != version:
         raise ValueError('Bundled skills have the wrong SDK version')
-    if pin.get('repository') != 'https://github.com/' + REPOSITORY or not re.fullmatch(r'[a-f0-9]{40}', pin.get('revision', '')):
+    # Published 0.0.27 pins the original repository. Future releases use the canonical source.
+    original_027 = version == '0.0.27' and pin.get('repository') == 'https://github.com/spacia-ai/oxidevm-skills'
+    if (pin.get('repository') != 'https://github.com/' + REPOSITORY and not original_027) or not re.fullmatch(r'[a-f0-9]{40}', pin.get('revision', '')):
         raise ValueError('Bundled skills have an unexpected source')
     resources = skill_files(root)
     expected = {name.removeprefix('skills/'): hashlib.sha256(content).hexdigest() for name, content in resources.items()}
