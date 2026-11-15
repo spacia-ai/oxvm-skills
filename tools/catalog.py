@@ -12,13 +12,13 @@ def catalogs(root: Path = ROOT) -> dict[str, dict]:
         '.codex-plugin/plugin.json': {**identity, 'skills': './skills/'},
         '.claude-plugin/plugin.json': {**identity, 'author': {'name': 'Spacia B.V.'}, 'homepage': 'https://oxvm.dev/docs/'},
         '.agents/plugins/marketplace.json': {
-            'name': 'oxidevm', 'interface': {'displayName': 'OXVM'},
-            'plugins': [{'name': 'oxidevm', 'source': {'source': 'local', 'path': './'},
+            'name': 'oxvm', 'interface': {'displayName': 'OXVM'},
+            'plugins': [{'name': 'oxvm', 'source': {'source': 'local', 'path': './'},
                          'policy': {'installation': 'AVAILABLE', 'authentication': 'ON_INSTALL'}, 'category': 'Productivity'}],
         },
         '.claude-plugin/marketplace.json': {
-            'name': 'oxidevm', 'owner': {'name': 'Spacia B.V.'},
-            'plugins': [{'name': 'oxidevm', 'description': plugin['description'], 'source': './'}],
+            'name': 'oxvm', 'owner': {'name': 'Spacia B.V.'},
+            'plugins': [{'name': 'oxvm', 'description': plugin['description'], 'source': './'}],
         },
     }
 

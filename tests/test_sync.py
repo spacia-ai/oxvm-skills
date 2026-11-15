@@ -12,10 +12,10 @@ from check import skill_files
 from sync_sdk import inspect_archive, build_bundle, public_archive
 
 
-def archive(version='0.0.4', tamper=False):
+def archive(version='0.0.4', tamper=False, repository='spacia-ai/oxvm-skills'):
     resources = skill_files()
     files = {name.removeprefix('skills/'): hashlib.sha256(data).hexdigest() for name, data in resources.items()}
-    pin = {'schemaVersion': 1, 'repository': 'https://github.com/spacia-ai/oxidevm-skills', 'revision': 'a' * 40,
+    pin = {'schemaVersion': 1, 'repository': 'https://github.com/' + repository, 'revision': 'a' * 40,
            'skillsVersion': version, 'sdkVersion': version, 'files': [{'path': name, 'sha256': sha} for name, sha in files.items()]}
     template = {'AGENT_SKILLS.json': json.dumps(pin)}
     for name, data in resources.items():
@@ -35,6 +35,13 @@ def archive(version='0.0.4', tamper=False):
 class SyncTests(unittest.TestCase):
     def test_actual_archive_binds_both_clients_and_sdk_version(self):
         self.assertEqual(inspect_archive(archive(), '0.0.4')['sdkVersion'], '0.0.4')
+
+    def test_published_027_retains_its_original_source_identity(self):
+        self.assertEqual(inspect_archive(archive('0.0.27', repository='spacia-ai/oxidevm-skills'), '0.0.27')['sdkVersion'], '0.0.27')
+
+    def test_future_archives_require_the_canonical_source(self):
+        with self.assertRaisesRegex(ValueError, 'source'):
+            inspect_archive(archive('0.0.28', repository='spacia-ai/oxidevm-skills'), '0.0.28')
 
     def test_changed_client_copy_is_rejected(self):
         with self.assertRaisesRegex(ValueError, 'contents'):

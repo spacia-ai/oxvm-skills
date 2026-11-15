@@ -39,7 +39,7 @@ def skill_files(root: Path = ROOT) -> dict[str, bytes]:
 def check(root: Path = ROOT) -> dict:
     plugin = json.loads((root / 'plugin.json').read_text())
     compatibility = json.loads((root / 'compatibility.json').read_text())
-    if plugin['name'] != 'oxidevm' or not re.fullmatch(r'0\.[0-9]+\.[0-9]+', plugin['version']):
+    if plugin['name'] != 'oxvm' or not re.fullmatch(r'0\.[0-9]+\.[0-9]+', plugin['version']):
         raise ValueError('Invalid plugin identity')
     if compatibility['sdkVersion'] != plugin['version'] or compatibility['schemaVersion'] != 1:
         raise ValueError('Plugin and SDK release versions differ')

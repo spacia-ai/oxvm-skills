@@ -1,11 +1,11 @@
 {
-  "name": "oxidevm",
+  "name": "oxvm",
   "interface": {
     "displayName": "OXVM"
   },
   "plugins": [
     {
-      "name": "oxidevm",
+      "name": "oxvm",
       "source": {
         "source": "local",
         "path": "./"
