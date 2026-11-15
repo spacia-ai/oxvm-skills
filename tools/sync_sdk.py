@@ -36,7 +36,7 @@ def inspect_archive(data: bytes, version: str, root: Path = ROOT) -> dict:
             return result
 
         package = document('package/package.json')
-        if package.get('name') != '@tabvm/cli' or package.get('version') != version or package.get('dependencies', {}).get('@tabvm/sdk') != version:
+        if package.get('name') != '@oxvm/cli' or package.get('version') != version or package.get('dependencies', {}).get('@oxvm/sdk') != version:
             raise ValueError('CLI and SDK version must match the selected release')
         template = document('package/dist/starter.json')
     if 'AGENT_SKILLS.json' not in template:
@@ -78,11 +78,11 @@ def fetch(path: str, limit: int) -> bytes:
 def public_archive(selected: str) -> tuple[str, bytes]:
     if selected != 'latest' and not re.fullmatch(r'\d+\.\d+\.\d+', selected):
         raise ValueError('Invalid SDK release version')
-    sdk = json.loads(fetch('https://registry.npmjs.org/@tabvm%2fsdk/' + selected, 1024 * 1024))
+    sdk = json.loads(fetch('https://registry.npmjs.org/@oxvm%2fsdk/' + selected, 1024 * 1024))
     version = sdk['version']
     if not re.fullmatch(r'\d+\.\d+\.\d+', version):
         raise ValueError('Only stable public SDK versions can synchronize skills')
-    cli = json.loads(fetch('https://registry.npmjs.org/@tabvm%2fcli/' + version, 1024 * 1024))
+    cli = json.loads(fetch('https://registry.npmjs.org/@oxvm%2fcli/' + version, 1024 * 1024))
     integrity = cli['dist']['integrity']
     if not isinstance(integrity, str) or not integrity.startswith('sha512-'):
         raise ValueError('CLI archive requires npm SHA-512 integrity')
@@ -103,7 +103,7 @@ def build_bundle(root: Path = ROOT) -> Path:
     check(root)
     version = json.loads((root / 'plugin.json').read_text())['version']
     destination = root / 'dist'; destination.mkdir(exist_ok=True)
-    archive = destination / f'tabvm-skills-{version}.zip'
+    archive = destination / f'oxvm-skills-{version}.zip'
     names = ['plugin.json', 'compatibility.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json', 'LICENSE', 'NOTICE', *skill_files(root)]
     with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as output:
         for name in sorted(names):

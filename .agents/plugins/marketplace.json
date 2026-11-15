@@ -1,7 +1,7 @@
 {
   "name": "oxidevm",
   "interface": {
-    "displayName": "TabVM"
+    "displayName": "OXVM"
   },
   "plugins": [
     {

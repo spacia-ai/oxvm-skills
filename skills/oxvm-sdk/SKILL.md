@@ -1,28 +1,28 @@
 ---
-name: tabvm-sdk
-description: Build or change browser applications that use the TabVM TypeScript SDK to run Linux programs, manage VM files and processes, or embed terminals and previews.
+name: oxvm-sdk
+description: Build or change browser applications that use the OXVM TypeScript SDK to run Linux programs, manage VM files and processes, or embed terminals and previews.
 license: Apache-2.0
 ---
 
-Use the package names installed in the project. New projects use `@tabvm/sdk`
-and `@tabvm/cli`. Keep `@oxidevm/sdk`, `@oxidevm/cli`, the `oxidevm` command,
+Use the package names installed in the project. New projects use `@oxvm/sdk`
+and `@oxvm/cli`. Keep `@oxidevm/sdk`, `@oxidevm/cli`, the `oxidevm` command,
 and legacy project files until the user explicitly requests migration.
 
-# Build with the TabVM SDK
+# Build with the OXVM SDK
 
-Read the application's `package.json`, lockfile, existing TabVM configuration and installed `@tabvm/sdk` declarations first. Use the installed version's public exports. A newer plugin does not upgrade the application's SDK or make newer APIs available.
+Read the application's `package.json`, lockfile, existing OXVM configuration and installed `@oxvm/sdk` declarations first. Use the installed version's public exports. A newer plugin does not upgrade the application's SDK or make newer APIs available.
 
 ## Choose the application boundary
 
 - The host web application owns UI, uploads, charts and user actions. Linux programs and their files run inside the browser VM. The computer's development server serves the host application.
-- Import application APIs from `@tabvm/sdk`. Use `@tabvm/sdk/image-builder` only in Node tooling. Machine and diagnostics APIs have their own public exports. Do not import SDK worker implementation paths.
+- Import application APIs from `@oxvm/sdk`. Use `@oxvm/sdk/image-builder` only in Node tooling. Machine and diagnostics APIs have their own public exports. Do not import SDK worker implementation paths.
 - Keep the configured mode explicit. Userspace uses `mode: "userspace"`; System requires the developer's kernel and image. Preserve the selected mode and image rather than silently switching them.
-- Normal starter development and production use `runtime: { hosting: "frame" }` and the pinned hosted runtime at `https://run.tabvm.dev`. Preserve generated image references and independent author trust. Local engine installation is an explicit licensed self-hosting choice.
+- Normal starter development and production use `runtime: { hosting: "frame" }` and the pinned hosted runtime at `https://run.oxvm.dev`. Preserve generated image references and independent author trust. Local engine installation is an explicit licensed self-hosting choice.
 - Keep cross-origin isolation headers and the required iframe policy. Reuse the generated Vite configuration, preview host and asset helpers.
 
 ## Upgrade the SDK
 
-`oxidevm.lock.json` binds one release: SDK and CLI version, engine release, image and staging paths. Update `@tabvm/sdk` and `@tabvm/cli` together to the same version. In SDK 0.0.10 and later, `assets install` refuses a lock from another release and names the differing fields; then run `npx tabvm assets install --update-lock` with the options the project stages with (`--config`, `--engine-dir`, `--reference`), and pass `--image <bundle> --trust <author.public.json>` again for an image the project configuration does not name. It stages and verifies the new assets before it rewrites the lock in one step, and a failed run keeps the old lock. Review and commit the lock with the package update, then run `npx tabvm doctor`; its `lock` check must pass. Do not edit the lock by hand.
+`oxidevm.lock.json` binds one release: SDK and CLI version, engine release, image and staging paths. Update `@oxvm/sdk` and `@oxvm/cli` together to the same version. In SDK 0.0.10 and later, `assets install` refuses a lock from another release and names the differing fields; then run `npx oxvm assets install --update-lock` with the options the project stages with (`--config`, `--engine-dir`, `--reference`), and pass `--image <bundle> --trust <author.public.json>` again for an image the project configuration does not name. It stages and verifies the new assets before it rewrites the lock in one step, and a failed run keeps the old lock. Review and commit the lock with the package update, then run `npx oxvm doctor`; its `lock` check must pass. Do not edit the lock by hand.
 
 ## Author a custom image only when needed
 
@@ -34,7 +34,7 @@ Use the project's matching CLI for image initialization, signing and build comma
 
 ## Use a WebAssembly module
 
-Applications can install packaged WebAssembly programs with `tabvm wasm add`, but only an SDK release that exports `@tabvm/sdk/wasm` supports it. Check the installed exports first; if they are missing, report that instead of adding modules by hand. In SDK 0.0.10 and later, modules run in the hosted runtime frame as well as self-hosted, on a cross-origin isolated page in Chromium or Firefox (WebKit and Safari refuse them), and their code runs in a per-VM module frame with an opaque origin. Self-hosted, `tabvm assets install` stages that frame at `module-frame/` beside the engine assets; rerun it after every SDK upgrade, serve it with the headers in its `frame.json`, never let a Service Worker answer it, and allow its origin in the page's `frame-src`. When they are present, follow the `tabvm-module-author` skill: review what a module declares before installing it, keep generated files untouched, and start modules with the typed handle and `spawnModule`. When the installed `@tabvm/sdk/wasm` exports `enableModuleCommands`, a module's declared commands can be turned on per VM, and programs in the VM then run them from `/usr/local/bin`; keep `/usr/local/bin` before `/usr/bin` on a terminal's `PATH`.
+Applications can install packaged WebAssembly programs with `oxvm wasm add`, but only an SDK release that exports `@oxvm/sdk/wasm` supports it. Check the installed exports first; if they are missing, report that instead of adding modules by hand. In SDK 0.0.10 and later, modules run in the hosted runtime frame as well as self-hosted, on a cross-origin isolated page in Chromium or Firefox (WebKit and Safari refuse them), and their code runs in a per-VM module frame with an opaque origin. Self-hosted, `oxvm assets install` stages that frame at `module-frame/` beside the engine assets; rerun it after every SDK upgrade, serve it with the headers in its `frame.json`, never let a Service Worker answer it, and allow its origin in the page's `frame-src`. When they are present, follow the `oxvm-module-author` skill: review what a module declares before installing it, keep generated files untouched, and start modules with the typed handle and `spawnModule`. When the installed `@oxvm/sdk/wasm` exports `enableModuleCommands`, a module's declared commands can be turned on per VM, and programs in the VM then run them from `/usr/local/bin`; keep `/usr/local/bin` before `/usr/bin` on a terminal's `PATH`.
 
 A module whose card shows internet reach (`net.internet`) reaches the internet only after the application connects the VM through a relay with `vm.network.connect(...)` and the user allows the session; until then its requests fail as offline (`EPERM`), and a revoke resets them. Connect the VM only when the user wants internet access; for a personal relay, watch `vm.network` and show the pairing code. Disclosed hosts on the card are information, not an allowlist.
 
@@ -50,4 +50,4 @@ Render guest output as text. Keep previews in the SDK's isolated preview frame. 
 
 Run the application's type check, production build and the affected browser interaction. Preserve its package manager and unrelated files. Report unavailable capabilities through their typed SDK errors.
 
-For API details, use the installed declarations and [TabVM documentation](https://tabvm.dev/docs/). Match documentation to the installed SDK before adopting a new API. Engine and guest licenses remain separate from the Apache-2.0 SDK and skills.
+For API details, use the installed declarations and [OXVM documentation](https://oxvm.dev/docs/). Match documentation to the installed SDK before adopting a new API. Engine and guest licenses remain separate from the Apache-2.0 SDK and skills.

@@ -1,4 +1,0 @@
-interface:
-  display_name: "TabVM starter"
-  short_description: "Extend the Linux Python and pandas starter"
-  default_prompt: "Use $tabvm-starter to extend this Linux data starter."

@@ -1,9 +1,9 @@
 {
   "name": "oxidevm",
   "version": "0.0.27",
-  "description": "Build browser applications with the TabVM SDK, extend its Linux Python starter, and diagnose integration errors.",
+  "description": "Build browser applications with the OXVM SDK, extend its Linux Python starter, and diagnose integration errors.",
   "author": {
     "name": "Spacia B.V."
   },
-  "homepage": "https://tabvm.dev/docs/"
+  "homepage": "https://oxvm.dev/docs/"
 }

@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 from catalog import ROOT, catalogs
 
-SKILLS = ('tabvm-sdk', 'tabvm-starter', 'tabvm-debugging', 'tabvm-module-author')
+SKILLS = ('oxvm-sdk', 'oxvm-starter', 'oxvm-debugging', 'oxvm-module-author')
 
 
 def skill_files(root: Path = ROOT) -> dict[str, bytes]:

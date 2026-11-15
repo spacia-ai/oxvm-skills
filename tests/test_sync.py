@@ -22,8 +22,8 @@ def archive(version='0.0.4', tamper=False):
         for host in ['.agents', '.claude']:
             template[host + '/' + name] = data.decode()
     if tamper:
-        template['.claude/skills/tabvm-sdk/SKILL.md'] += '\nchanged'
-    entries = {'package/package.json': json.dumps({'name': '@tabvm/cli', 'version': version, 'dependencies': {'@tabvm/sdk': version}}),
+        template['.claude/skills/oxvm-sdk/SKILL.md'] += '\nchanged'
+    entries = {'package/package.json': json.dumps({'name': '@oxvm/cli', 'version': version, 'dependencies': {'@oxvm/sdk': version}}),
                'package/dist/starter.json': json.dumps(template)}
     output = io.BytesIO()
     with tarfile.open(fileobj=output, mode='w:gz') as tar:

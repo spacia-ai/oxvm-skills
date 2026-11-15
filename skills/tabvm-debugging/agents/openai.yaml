@@ -1,4 +1,0 @@
-interface:
-  display_name: "TabVM debugging"
-  short_description: "Diagnose browser VM and guest integration errors"
-  default_prompt: "Use $tabvm-debugging to investigate this application error."
