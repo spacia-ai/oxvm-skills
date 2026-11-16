@@ -1,12 +1,12 @@
-# OXVM skills
+# OxVM skills
 
-Skills for building browser applications with the [OXVM SDK](https://oxvm.dev/docs/) in Codex and Claude Code.
+Skills for building browser applications with the [OxVM SDK](https://oxvm.dev/docs/) in Codex and Claude Code.
 
 SDK/CLI starters include these project skills from version 0.0.4.
 Earlier starters can use the plugin installation below. Versioned plugin ZIPs
 are available under [Releases](https://github.com/spacia-ai/oxvm-skills/releases) after release approval.
 
-The OXVM SDK and CLI 0.0.27 are published. The marketplace and plugin IDs are
+The OxVM SDK and CLI 0.0.27 are published. The marketplace and plugin IDs are
 `oxvm`. Existing installations can add this canonical marketplace and plugin
 with the commands below. The former repository remains available for pinned
 installations.
@@ -52,7 +52,7 @@ access to your project; opening the browser demo alone does not grant it.
 For Codex, run `codex plugin marketplace upgrade oxvm`, then
 `codex plugin add oxvm@oxvm`. For Claude Code, run
 `claude plugin update oxvm@oxvm`. Third-party Claude marketplace
-auto-updates are off by default. Enable them under **Marketplaces → OXVM**
+auto-updates are off by default. Enable them under **Marketplaces → OxVM**
 in `/plugin` if you want them. Follow the client's reload message.
 
 Project copies stay matched to their SDK. A newer global plugin checks the
@@ -81,4 +81,4 @@ For a local packaging preview, run `python3 tools/sync_sdk.py --bundle`.
 Its output in `dist/` is not a published release. This repository contains no
 publication scripts, credentials, or CI workflows.
 
-SDK, CLI and skill instructions use Apache-2.0. The OXVM engine and guest programs retain their separate licenses.
+SDK, CLI and skill instructions use Apache-2.0. The OxVM engine and guest programs retain their separate licenses.
