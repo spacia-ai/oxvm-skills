@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "oxvm",
-      "description": "Build browser applications with the OXVM SDK, extend its Linux Python starter, and diagnose integration errors.",
+      "description": "Build browser applications with the OxVM SDK, extend its Linux Python starter, and diagnose integration errors.",
       "source": "./"
     }
   ]
