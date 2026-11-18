@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "minimumSDKVersion": "0.0.27",
-  "sdkVersion": "0.0.27",
+  "sdkVersion": "0.0.33",
   "status": "qualified",
-  "cliArchiveSHA256": "ec7ad5972dde9ab170ab268831607b3cab58a17389401be4a7bf2dfa2a76d7cf",
-  "skillsRevision": "50c9078f3eea440973e264f6790a25adf225f352"
+  "cliArchiveSHA256": "4039c45642f393f1406b834bd22dc4282c4aca8dff343e9383ac611b7ec1b4ef",
+  "skillsRevision": "72337168edcac0ed98561bbc353ecbe05aeef749"
 }

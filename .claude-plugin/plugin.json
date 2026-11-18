@@ -1,6 +1,6 @@
 {
   "name": "oxvm",
-  "version": "0.0.27",
+  "version": "0.0.33",
   "description": "Build browser applications with the OxVM SDK, extend its Linux Python starter, and diagnose integration errors.",
   "author": {
     "name": "Spacia B.V."
