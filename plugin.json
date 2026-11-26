@@ -1,6 +1,6 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "oxvm",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "description": "Build browser applications with the OxVM SDK, extend its Linux Python starter, and diagnose integration errors."
 }
