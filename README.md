@@ -6,7 +6,7 @@ SDK/CLI starters include these project skills from version 0.0.4.
 Earlier starters can use the plugin installation below. Versioned plugin ZIPs
 are available under [Releases](https://github.com/spacia-ai/oxvm-skills/releases) after release approval.
 
-The OxVM SDK and CLI 0.0.34 are published. The marketplace and plugin IDs are
+The OxVM SDK and CLI 0.0.37 are published. The marketplace and plugin IDs are
 `oxvm`. Existing installations can add this canonical marketplace and plugin
 with the commands below. The former repository remains available for pinned
 installations.
